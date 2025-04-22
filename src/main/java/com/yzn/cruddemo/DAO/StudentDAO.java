@@ -1,6 +1,6 @@
 package com.yzn.cruddemo.DAO;
 
-import com.yzn.cruddemo.entity.Student;
+import com.yzn.cruddemo.Entity.Student;
 
 import java.util.List;
 

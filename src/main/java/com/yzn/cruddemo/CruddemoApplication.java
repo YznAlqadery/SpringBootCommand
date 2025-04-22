@@ -1,7 +1,7 @@
 package com.yzn.cruddemo;
 
 import com.yzn.cruddemo.DAO.StudentDAO;
-import com.yzn.cruddemo.entity.Student;
+import com.yzn.cruddemo.Entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

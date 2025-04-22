@@ -1,6 +1,6 @@
 package com.yzn.cruddemo.DAO;
 
-import com.yzn.cruddemo.entity.Student;
+import com.yzn.cruddemo.Entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
