@@ -27,7 +27,7 @@ public class StudentDAOImpl implements StudentDAO {
     // Implement the save method
 
     @Override
-    // Since we are performing an update on the database
+    // Since we are performing an update on the database/table
     @Transactional
     public void save(Student student) {
         // Saves the student to the database
@@ -81,6 +81,25 @@ public class StudentDAOImpl implements StudentDAO {
     public void update(Student student) {
         // Perform an update on the student object
         entityManager.merge(student);
+    }
+
+    @Override
+    // Since we're performing an update on the database/table
+    @Transactional
+    public void delete(Integer id) {
+        // Retrieve the student
+        Student student = entityManager.find(Student.class,id);
+
+        // Delete the student
+        entityManager.remove(student);
+
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+        // return the number of rows deleted from the table
+        return entityManager.createQuery("DELETE FROM Student").executeUpdate();
     }
 
 
