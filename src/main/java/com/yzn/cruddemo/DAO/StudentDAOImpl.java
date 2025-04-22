@@ -12,7 +12,6 @@ import java.util.List;
 // Specialized annotation for repositories
 // Supports component scanning
 // Translates JDBC exceptions
-
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 
@@ -75,6 +74,13 @@ public class StudentDAOImpl implements StudentDAO {
 
         // Return the query results
         return query.getResultList();
+    }
+
+    @Override
+    @Transactional
+    public void update(Student student) {
+        // Perform an update on the student object
+        entityManager.merge(student);
     }
 
 
