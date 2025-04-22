@@ -2,9 +2,12 @@ package com.yzn.cruddemo.DAO;
 
 import com.yzn.cruddemo.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 // Specialized annotation for repositories
 // Supports component scanning
@@ -37,6 +40,41 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public Student findById(Integer id) {
         return entityManager.find(Student.class, id);
+    }
+
+    // Implement the findAll method
+
+    @Override
+    public List<Student> findAll() {
+        // Create query
+        // (Student) is the name of JPA Entity(class name)
+        // All JPQL syntax is based on entity name and entity fields
+
+        TypedQuery<Student> query = entityManager.createQuery("FROM Student",Student.class);
+
+        // Default sort is ascending
+       // TypedQuery<Student> query = entityManager.createQuery("FROM Student order by lastName asc",Student.class);
+
+        // Default sort is ascending
+        // TypedQuery<Student> query = entityManager.createQuery("FROM Student order by lastName desc",Student.class);
+
+        // Return query results
+        return query.getResultList();
+    }
+
+    // Implement the findByLastName method
+
+    @Override
+    public List<Student> findByLastName(String data) {
+        // Create the query
+        // JPQL Named parameters are prefixed with a colon (:)
+        TypedQuery<Student> query = entityManager.createQuery("FROM Student WHERE lastName=:data", Student.class);
+
+        // Set the query parameters
+        query.setParameter("data", data);
+
+        // Return the query results
+        return query.getResultList();
     }
 
 
